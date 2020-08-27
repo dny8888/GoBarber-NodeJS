@@ -11,7 +11,9 @@ export default class CreateAppointments1598480922602
                         name: 'id',
                         type: 'uuid',
                         isPrimary: true,
+                        isUnique: true,
                         generationStrategy: 'uuid',
+                        default: 'uuid_generate_v4()',
                     },
                     {
                         name: 'provider',
@@ -29,6 +31,6 @@ export default class CreateAppointments1598480922602
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('apointments');
+        await queryRunner.dropTable('appointments');
     }
 }
