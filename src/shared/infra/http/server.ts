@@ -6,11 +6,11 @@ import 'express-async-errors';
 
 import cors from 'cors';
 
+import '@shared/container';
+import '@shared/infra/typeorm';
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
 import routes from './routes';
-
-import '@shared/infra/typeorm';
 
 const app = express();
 

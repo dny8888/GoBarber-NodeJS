@@ -30,6 +30,7 @@
                 "ts": "never"
             }
         ],
+        "no-useless-constructor":"off",
         "prettier/prettier": "error",
         "class-methods-use-this": "off",
         "camelcase": "off",
@@ -38,6 +39,17 @@
             {
                 "argsIgnorePattern": "_"
             }
+        ],
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "interface",
+            "format": ["PascalCase"],
+            "custom": {
+              "regex": "^I[A-Z]",
+              "match": true
+            }
+          }
         ]
     },
     "settings": {
