@@ -5,13 +5,17 @@ import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 import CreateUserService from './CreateUserService';
 import UpdateUserAvatarService from './UpdateUserAvatarService';
 
+let fakeUsersRepository: FakeUsersRepository;
+let fakeHashProvider: FakeHashProvider;
+let fakeStorage: FakeStorageProvider;
+
 describe('UpdateUserAvatar', () => {
+  beforeEach(() => {
+    fakeUsersRepository = new FakeUsersRepository();
+    fakeHashProvider = new FakeHashProvider();
+    fakeStorage = new FakeStorageProvider();
+  });
   it('should be able to update User avatar', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
-
-    const fakeStorage = new FakeStorageProvider();
-
     const createUser = new CreateUserService(
       fakeUsersRepository,
       fakeHashProvider,
@@ -36,9 +40,6 @@ describe('UpdateUserAvatar', () => {
     expect(response.avatar).toBe('avatar.jpg');
   });
   it('should not be able to update User avatar, when non existing user', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeStorage = new FakeStorageProvider();
-
     const updateUserAvatar = new UpdateUserAvatarService(
       fakeUsersRepository,
       fakeStorage,
@@ -52,11 +53,6 @@ describe('UpdateUserAvatar', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
   it('should not be able to update User avatar, when non existing user', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
-
-    const fakeStorage = new FakeStorageProvider();
-
     const deleteFile = jest.spyOn(fakeStorage, 'deleteFile');
 
     const createUser = new CreateUserService(
