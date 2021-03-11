@@ -14,8 +14,8 @@ export default {
 
   defaults: {
     from: {
-      email: 'configurar@email.com',
-      name: 'Configurar SES',
+      email: 'dny8888@whosnext.app.br',
+      name: 'Daniel da WhosNext',
     },
   },
 } as IMailConfig;

@@ -1,4 +1,5 @@
 import { inject, injectable } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 import Appointment from '../infra/typeorm/entities/Appointment';
 
@@ -26,7 +27,7 @@ class ListProviderAppointmentsService {
       { day, month, year, provider_id },
     );
 
-    return appointments;
+    return classToClass(appointments);
   }
 }
 
