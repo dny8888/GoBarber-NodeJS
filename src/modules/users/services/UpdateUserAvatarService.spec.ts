@@ -1,6 +1,7 @@
 import FakeUsersRepository from '@modules/users/repositories/fakes/FakeUsersRepository';
 import AppError from '@shared/errors/AppError';
 import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/DiskStorageProvider';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeHashProvider from '../providers/HashProvider/fakes/FakeHashProvider';
 import CreateUserService from './CreateUserService';
 import UpdateUserAvatarService from './UpdateUserAvatarService';
@@ -8,17 +9,20 @@ import UpdateUserAvatarService from './UpdateUserAvatarService';
 let fakeUsersRepository: FakeUsersRepository;
 let fakeHashProvider: FakeHashProvider;
 let fakeStorage: FakeStorageProvider;
+let fakeCacheProvider: FakeCacheProvider;
 
 describe('UpdateUserAvatar', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeHashProvider = new FakeHashProvider();
     fakeStorage = new FakeStorageProvider();
+    fakeCacheProvider = new FakeCacheProvider();
   });
   it('should be able to update User avatar', async () => {
     const createUser = new CreateUserService(
       fakeUsersRepository,
       fakeHashProvider,
+      fakeCacheProvider,
     );
 
     const updateUserAvatar = new UpdateUserAvatarService(
@@ -58,6 +62,7 @@ describe('UpdateUserAvatar', () => {
     const createUser = new CreateUserService(
       fakeUsersRepository,
       fakeHashProvider,
+      fakeCacheProvider,
     );
 
     const updateUserAvatar = new UpdateUserAvatarService(
